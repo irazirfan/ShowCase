@@ -1,5 +1,25 @@
-﻿<h3>Calculator</h3>
+﻿@page "/Calculator"
 
-@code {
+@using ShowCase.Data
 
+@inject CalculatorService calc
+
+<p><input @bind="@a" /></p>
+
+<p><input @bind="@b" /></p>
+
+<p><button @onclick="calculate">Add</button></p>
+
+
+<p>@calcoutput</p>
+
+@functions{
+    double calcoutput { get; set; }
+    double a { get; set; }
+    double b { get; set; }
+
+    public async void calculate()
+    {
+        calcoutput = await calc.Calculate(a, b);
+    }
 }
